@@ -51,6 +51,11 @@ public class ListagemSacole extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tabela.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                tabelaMousePressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tabela);
 
         jButton1.setText("Novo");
@@ -95,6 +100,18 @@ public class ListagemSacole extends javax.swing.JDialog {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        ManutencaoSacole manutencao = new ManutencaoSacole(null, true, this); manutencao.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void tabelaMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaMousePressed
+        if (evt.getClickCount() == 2) {
+            //obtem a linha selecionada
+            int linhaSelecionada = tabela.getSelectedRow();
+            //obtém a chave primária
+            int pk = Integer.parseInt(tabela.getValueAt(linhaSelecionada, 0).toString()); //pk está na coluna 0
+            //abre a manutenção
+            ManutencaoSacole manutencao = new ManutencaoSacole(null, true, this, pk);
+            manutencao.setVisible(true);
+}
+    }//GEN-LAST:event_tabelaMousePressed
 
     /**
      * @param args the command line arguments
