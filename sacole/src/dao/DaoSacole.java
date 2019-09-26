@@ -43,4 +43,21 @@ public class DaoSacole {
             JOptionPane.showMessageDialog(null, "Erro!");
         }
     }
+    public static boolean alterar(Sacole objeto) {
+        String sql = "UPDATE sacole SET codigo = ?, n_serie = ?, preco = ?, data_validade = ?, sabor = ? WHERE codigo=?";
+        try {
+            PreparedStatement ps = conexao.Conexao.getConexao().prepareStatement(sql);
+            ps.setInt(1, objeto.getN_serie()); 
+            ps.setDouble(2, objeto.getPreco());
+            ps.setDate(3, Date.valueOf(objeto.getData_validade())); //fazer as seguintes importações: java.sql.Date e  java.time.format.DateTimeFormatter;
+            ps.setString(4, objeto.getSabor()); 
+            ps.setInt(5, objeto.getCodigo());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException | ClassNotFoundException ex) {
+            System.out.println(ex.getMessage());
+            return false;
+        }
+    }
+
 }
