@@ -85,7 +85,7 @@ man.dispose();//fechar a tela da manutenção
             //definindo o conteúdo da tabela
             linha.add(objeto.getCodigo());
             linha.add(objeto.getN_serie());
-            linha.add(objeto.getData_validade());
+            linha.add(objeto.getData_validade().format(DateTimeFormatter.ofPattern("dd/MM/yyyy")));
             linha.add(objeto.getPreco());
             linha.add(objeto.getSabor());
             modelo.addRow(linha); //adicionando a linha na tabela
